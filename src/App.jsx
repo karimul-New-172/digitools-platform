@@ -4,6 +4,7 @@ import Banner from './components/Banner/Banner'
 import Navbar from './components/Navbar/Navbar'
 import Stats from './components/Stats/Stats'
 import Products from './components/Products/Products'
+import Product from './components/Product/Product'
 import Cart from './components/Cart/Cart'
 
 function App() {
@@ -24,12 +25,13 @@ function App() {
             <button onClick={()=> setToggle(false)} className={`px-6 py-2 rounded-full ${toggle === false ? 'bg-linear-to-r from-[#642ef7] to-[#9216fa] text-white font-semibold shadow-md' : ''}   text-xl text-gray-700`}>Cart<span>(2)</span></button>
           </div>
         </div>
-
+        
         {/* Cards section */}
         {
           toggle ? <Products></Products> : <Cart></Cart>
         }
       </section>
+      <Product></Product>
     </>
   )
 }
