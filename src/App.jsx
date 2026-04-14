@@ -15,9 +15,9 @@ const productsPromise = fetchProducts();
 function App() {
   const [toggle, setToggle] = useState(true);
   const [purchase, setPurchased] = useState([]);
-  // const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  console.log(purchase);
+  console.log(totalPrice);
 
   return (
     <>
@@ -38,7 +38,7 @@ function App() {
         {/* Cards section */}
         {
           toggle ? <Suspense fallback={<div className='w-full py-10 flex justify-center items-center'><span className="loading loading-spinner loading-xl"></span></div>}>
-            <AvailableProducts productsPromise={productsPromise} purchase={purchase} setPurchased={setPurchased}></AvailableProducts>
+            <AvailableProducts productsPromise={productsPromise} purchase={purchase} setPurchased={setPurchased} totalPrice={totalPrice} setTotalPrice={setTotalPrice}></AvailableProducts>
           </Suspense> : <Cart></Cart>
         }
       </section>

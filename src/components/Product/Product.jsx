@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 
-const Product = ({product, purchase, setPurchased}) => {
+const Product = ({product, purchase, setPurchased, totalPrice, setTotalPrice}) => {
     const {icon, name, tag, tagType, description, price, period, features} = product;
     const badgeStyle = tagType => 
         tagType === "best" 
@@ -14,8 +14,13 @@ const Product = ({product, purchase, setPurchased}) => {
 
     const handleStatus = (product) => {
         setStatus(false);
-        const newPurchased = [...purchase, product]
-        setPurchased(newPurchased)
+        const findPurchase = purchase.find(item => item.id === product.id);
+        if(!findPurchase){
+            const newPurchased = [...purchase, product]
+            setPurchased(newPurchased)
+            setTotalPrice(totalPrice + product.price);
+        }
+        return;
     }
     return (
         <div className="card bg-base-100 shadow-sm">
