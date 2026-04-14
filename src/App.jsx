@@ -10,10 +10,14 @@ const fetchProducts = async () => {
   const res = await fetch('/products.json');
   return res.json()
 }
+const productsPromise = fetchProducts();
 
 function App() {
   const [toggle, setToggle] = useState(true);
-  const productsPromise = fetchProducts();
+  const [purchase, setPurchased] = useState([]);
+  // const [totalPrice, setTotalPrice] = useState(0);
+
+  console.log(purchase);
 
   return (
     <>
@@ -27,14 +31,14 @@ function App() {
           <p className='text-xl text-[#627362]'>Choose from our curated collection of premium digital products designed <br /> to boost your productivity and creativity.</p>
           <div className="btns bg-gray-50 p-1 rounded-full flex w-max mx-auto">
             <button onClick={() => setToggle(true)} className={`px-6 py-2 rounded-full ${toggle ? 'bg-linear-to-r from-[#642ef7] to-[#9216fa] text-white font-semibold shadow-md' : ''}   text-xl text-gray-700`}>Products</button>
-            <button onClick={() => setToggle(false)} className={`px-6 py-2 rounded-full ${toggle === false ? 'bg-linear-to-r from-[#642ef7] to-[#9216fa] text-white font-semibold shadow-md' : ''}   text-xl text-gray-700`}>Cart<span>(2)</span></button>
+            <button onClick={() => setToggle(false)} className={`px-6 py-2 rounded-full ${toggle === false ? 'bg-linear-to-r from-[#642ef7] to-[#9216fa] text-white font-semibold shadow-md' : ''}   text-xl text-gray-700`}>Cart<span> ({purchase.length})</span></button>
           </div>
         </div>
 
         {/* Cards section */}
         {
           toggle ? <Suspense fallback={<div className='w-full py-10 flex justify-center items-center'><span className="loading loading-spinner loading-xl"></span></div>}>
-            <AvailableProducts productsPromise={productsPromise}></AvailableProducts>
+            <AvailableProducts productsPromise={productsPromise} purchase={purchase} setPurchased={setPurchased}></AvailableProducts>
           </Suspense> : <Cart></Cart>
         }
       </section>

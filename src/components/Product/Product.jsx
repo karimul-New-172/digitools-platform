@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 
-const Product = ({product}) => {
-    console.log(product);
+const Product = ({product, purchase, setPurchased}) => {
     const {icon, name, tag, tagType, description, price, period, features} = product;
     const badgeStyle = tagType => 
         tagType === "best" 
@@ -11,6 +10,13 @@ const Product = ({product}) => {
         ?'bg-purple-100 text-purple-600 border-none'
         :'bg-green-100 text-green-600 border-none';
     
+    const [status, setStatus] = useState(true)
+
+    const handleStatus = (product) => {
+        setStatus(false);
+        const newPurchased = [...purchase, product]
+        setPurchased(newPurchased)
+    }
     return (
         <div className="card bg-base-100 shadow-sm">
             <div className="card-body">
@@ -27,12 +33,12 @@ const Product = ({product}) => {
                 <p className='text-[#627362]'>{description}</p>
                 <span className="text-[#627362]"><span className='text-xl font-semibold text-[#101727]'>${price}</span>/{period}</span>
                 <ul className="mt-6 flex flex-col gap-2 text-xs">
-                    {features.map(feature => <li className='flex gap-2 items-center'>
+                    {features.map((feature, index) => <li key={index} className='flex gap-2 items-center'>
                         <Check className='text-green-700'/> <span>{feature}</span>
                     </li>)}
                 </ul>
                 <div className="mt-6">
-                    <button className="btn w-full rounded-full bg-linear-to-r from-[#642ef7] to-[#9216fa] text-white/80">Buy Now</button>
+                    <button onClick={() => {handleStatus(product)} } className={`btn w-full rounded-full ${status ? 'bg-linear-to-r from-[#642ef7] to-[#9216fa]' : 'bg-green-700'} text-white/80`}>{status ? "Buy Now" :  <><Check /> Added to Cart</>}</button>
                 </div>
             </div>
         </div>
