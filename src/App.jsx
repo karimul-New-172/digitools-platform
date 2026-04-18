@@ -4,7 +4,8 @@ import Banner from './components/Banner/Banner'
 import Navbar from './components/Navbar/Navbar'
 import Stats from './components/Stats/Stats'
 import AvailableProducts from './components/AvailableProducts/AvailableProducts'
-import Cart from './components/Cart/Cart'
+import CartItem from './components/CartItem/CartItem'
+import Carts from './components/Carts/Carts'
 
 const fetchProducts = async () => {
   const res = await fetch('/products.json');
@@ -17,7 +18,11 @@ function App() {
   const [purchase, setPurchased] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  console.log(totalPrice);
+  const handleRemoveItem = (item) => {
+        const filterItem = purchase.filter(filterItem => filterItem.id !== item.id);
+        setPurchased(filterItem);
+        setTotalPrice(totalPrice - item.price);
+    }
 
   return (
     <>
@@ -39,7 +44,7 @@ function App() {
         {
           toggle ? <Suspense fallback={<div className='w-full py-10 flex justify-center items-center'><span className="loading loading-spinner loading-xl"></span></div>}>
             <AvailableProducts productsPromise={productsPromise} purchase={purchase} setPurchased={setPurchased} totalPrice={totalPrice} setTotalPrice={setTotalPrice}></AvailableProducts>
-          </Suspense> : <Cart></Cart>
+          </Suspense> : <Carts purchase={purchase} totalPrice={totalPrice} setTotalPrice={setTotalPrice} handleRemoveItem={handleRemoveItem}></Carts>
         }
       </section>
     </>
