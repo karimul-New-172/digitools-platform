@@ -24,6 +24,11 @@ function App() {
         setTotalPrice(totalPrice - item.price);
     }
 
+  const handlePurchase = () => {
+    setPurchased([]);
+    setTotalPrice(0);
+  }
+
   return (
     <>
       <Navbar></Navbar>
@@ -44,7 +49,7 @@ function App() {
         {
           toggle ? <Suspense fallback={<div className='w-full py-10 flex justify-center items-center'><span className="loading loading-spinner loading-xl"></span></div>}>
             <AvailableProducts productsPromise={productsPromise} purchase={purchase} setPurchased={setPurchased} totalPrice={totalPrice} setTotalPrice={setTotalPrice}></AvailableProducts>
-          </Suspense> : <Carts purchase={purchase} totalPrice={totalPrice} setTotalPrice={setTotalPrice} handleRemoveItem={handleRemoveItem}></Carts>
+          </Suspense> : <Carts purchase={purchase} totalPrice={totalPrice} setTotalPrice={setTotalPrice} handleRemoveItem={handleRemoveItem} handlePurchase={handlePurchase}></Carts>
         }
       </section>
     </>

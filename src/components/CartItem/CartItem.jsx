@@ -14,7 +14,7 @@ const CartItem = ({item, handleRemoveItem}) => {
                     <p>${price}</p>
                 </div>
             </div>
-            <p className='text-red-400 cursor-pointer' onClick={()=>{handleRemoveItem(item)}}>Remove</p>
+            <p className='text-red-400 font-semibold cursor-pointer' onClick={()=>{handleRemoveItem(item)}}>Remove</p>
         </div>
     );
 };
