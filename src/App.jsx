@@ -6,6 +6,7 @@ import Stats from './components/Stats/Stats'
 import AvailableProducts from './components/AvailableProducts/AvailableProducts'
 import CartItem from './components/CartItem/CartItem'
 import Carts from './components/Carts/Carts'
+import Started from './components/Started/Started'
 
 const fetchProducts = async () => {
   const res = await fetch('/products.json');
@@ -31,11 +32,11 @@ function App() {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar purchase={purchase}></Navbar>
       <Banner></Banner>
       <Stats></Stats>
       {/* primium and cards section */}
-      <section className='mt-20'>
+      <section className='my-20'>
         <div className='container mx-auto text-center space-y-6'>
           <h2 className='text-5xl font-bold text-[#101727]'>Premium Digital Tools</h2>
           <p className='text-xl text-[#627362]'>Choose from our curated collection of premium digital products designed <br /> to boost your productivity and creativity.</p>
@@ -52,6 +53,9 @@ function App() {
           </Suspense> : <Carts purchase={purchase} totalPrice={totalPrice} setTotalPrice={setTotalPrice} handleRemoveItem={handleRemoveItem} handlePurchase={handlePurchase}></Carts>
         }
       </section>
+
+      <Started></Started>
+      
     </>
   )
 }
