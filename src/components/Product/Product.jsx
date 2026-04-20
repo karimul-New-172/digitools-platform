@@ -23,7 +23,7 @@ const Product = ({product, purchase, setPurchased, totalPrice, setTotalPrice}) =
         return;
     }
     return (
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card bg-base-100 shadow-md">
             <div className="card-body">
                 {/* badge */}
                 <div className='flex justify-end'>

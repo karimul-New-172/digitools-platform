@@ -7,6 +7,7 @@ import AvailableProducts from './components/AvailableProducts/AvailableProducts'
 import CartItem from './components/CartItem/CartItem'
 import Carts from './components/Carts/Carts'
 import Started from './components/Started/Started'
+import PricingCards from './components/PricingCards/PricingCards'
 
 const fetchProducts = async () => {
   const res = await fetch('/products.json');
@@ -55,7 +56,7 @@ function App() {
       </section>
 
       <Started></Started>
-      
+      <PricingCards></PricingCards>
     </>
   )
 }
