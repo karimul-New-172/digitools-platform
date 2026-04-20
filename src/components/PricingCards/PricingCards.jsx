@@ -29,7 +29,7 @@ const PricingCards = () => {
 
                     {/* card-2 */}
                     <div className="card bg-base-100 shadow-sm relative bg-linear-to-r from-[#642ef7] to-[#9216fa] text-white/80">
-                        <span className="badge badge-md badge-warning rounded-full absolute left-[43%] -top-2.5">Most Popular</span>
+                        <span className="badge badge-md badge-warning rounded-full absolute left-[42%] -top-2.5">Most Popular</span>
                         <div className="card-body text-left">
                             <h2 className="text-2xl font-semibold">Pro</h2>
                             <p className='text-lg'>Best for professionals</p>
