@@ -5,7 +5,7 @@ import { Play } from 'lucide-react';
 
 const Banner = () => {
     return (
-        <div className='flex justify-between items-center container mx-auto mt-25'>
+        <div className='flex flex-col md:flex-row justify-between items-center container mx-auto mt-25 gap-10'>
             <div className="left max-w-162.5 space-y-5">
                 <div className='bg-[#E1E7FF] inline-flex items-center gap-2.5 rounded-full border border-purple-100 px-4 py-1.5'>
                     <img src={bulletPoint} alt="" />
