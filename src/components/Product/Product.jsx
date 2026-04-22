@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const Product = ({product, purchase, setPurchased, totalPrice, setTotalPrice}) => {
     const {icon, name, tag, tagType, description, price, period, features} = product;
@@ -18,6 +19,7 @@ const Product = ({product, purchase, setPurchased, totalPrice, setTotalPrice}) =
         if(!findPurchase){
             const newPurchased = [...purchase, product]
             setPurchased(newPurchased)
+            toast('Product added to cart')
             setTotalPrice(totalPrice + product.price);
         }
         return;

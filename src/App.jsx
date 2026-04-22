@@ -10,6 +10,7 @@ import Started from './components/Started/Started'
 import PricingCards from './components/PricingCards/PricingCards'
 import Transform from './components/Transform/Transform'
 import Footer from './components/Footer/Footer'
+import { toast, ToastContainer } from 'react-toastify'
 
 const fetchProducts = async () => {
   const res = await fetch('/products.json');
@@ -25,12 +26,14 @@ function App() {
   const handleRemoveItem = (item) => {
         const filterItem = purchase.filter(filterItem => filterItem.id !== item.id);
         setPurchased(filterItem);
+        toast("Item removed from cart")
         setTotalPrice(totalPrice - item.price);
     }
 
   const handlePurchase = () => {
     setPurchased([]);
     setTotalPrice(0);
+    toast("All items placed for order")
   }
 
   return (
@@ -61,6 +64,7 @@ function App() {
       <PricingCards></PricingCards>
       <Transform></Transform>
       <Footer></Footer>
+      <ToastContainer />
     </>
   )
 }
